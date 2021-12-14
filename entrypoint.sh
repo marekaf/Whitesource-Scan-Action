@@ -12,11 +12,6 @@ if [ -z "$INPUT_CONFIGFILE" ] && [ -z "$INPUT_PROJECTNAME" ]; then
   exit 126
 fi
 
-PRODUCT_NAME_STR=""
-if [ -n "$INPUT_PRODUCTNAME" ]; then
-  PRODUCT_NAME_STR="-product $INPUT_PRODUCTNAME"
-fi
-
 # Download latest Unified Agent release from Whitesource
 curl -LJO  https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
 
@@ -29,7 +24,7 @@ fi
 
 # Execute Unified Agent (2 settings)
 if [ -z  "$INPUT_CONFIGFILE" ]; then
-  java -jar wss-unified-agent.jar -noConfig true -apiKey $INPUT_APIKEY -project "$INPUT_PROJECTNAME" "$PRODUCT_NAME_STR" \
+  java -jar wss-unified-agent.jar -noConfig true -apiKey $INPUT_APIKEY -project "$INPUT_PROJECTNAME" -product "$INPUT_PRODUCTNAME" \
     -d . -wss.url $INPUT_WSSURL -resolveAllDependencies true
 else
   java -jar wss-unified-agent.jar -apiKey $INPUT_APIKEY -c "$INPUT_CONFIGFILE" -d .
