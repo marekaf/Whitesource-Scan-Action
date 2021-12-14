@@ -29,7 +29,7 @@ fi
 
 # Execute Unified Agent (2 settings)
 if [ -z  "$INPUT_CONFIGFILE" ]; then
-  java -jar wss-unified-agent.jar -noConfig true -apiKey $INPUT_APIKEY -project "$INPUT_PROJECTNAME" $PRODUCT_NAME_STR\
+  java -jar wss-unified-agent.jar -noConfig true -apiKey $INPUT_APIKEY -project "$INPUT_PROJECTNAME" "$PRODUCT_NAME_STR" \
     -d . -wss.url $INPUT_WSSURL -resolveAllDependencies true
 else
   java -jar wss-unified-agent.jar -apiKey $INPUT_APIKEY -c "$INPUT_CONFIGFILE" -d .
