@@ -8,7 +8,7 @@ RUN apt-get update \
   && apt-get -y install python3 python3-pip \
   && rm -rf /var/lib/apt/lists/* \
   && pip3 install --no-cache-dir pipenv setuptools poetry conda \
-  && echo "alias python=python3"  >> ~/.bashrc
+  && ln -s /usr/bin/python3 /usr/bin/python
 
 COPY entrypoint.sh /entrypoint.sh
 
